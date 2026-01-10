@@ -4,6 +4,7 @@ local ui_options = {
 	min_size = Vector2.new(400, 300),
 	toggle_key = Enum.KeyCode.C,
 	can_resize = true,
+	window_transparency = 0.25,  
 }
 
 do
@@ -110,14 +111,15 @@ Label.TextXAlignment = Enum.TextXAlignment.Left
 Window.Name = "Window"
 Window.Parent = Prefabs
 Window.Active = true
-Window.BackgroundColor3 = Color3.new(1, 1, 1)
-Window.BackgroundTransparency = 1
+Window.BackgroundColor3 = Color3.new(0.0823529, 0.0862745, 0.0901961)
+Window.BackgroundTransparency = 0.25  
 Window.ClipsDescendants = true
 Window.Position = UDim2.new(0, 20, 0, 20)
 Window.Selectable = true
 Window.Size = UDim2.new(0, 200, 0, 200)
 Window.Image = "rbxassetid://2851926732"
 Window.ImageColor3 = Color3.new(0.0823529, 0.0862745, 0.0901961)
+Window.ImageTransparency = 0.25  
 Window.ScaleType = Enum.ScaleType.Slice
 Window.SliceCenter = Rect.new(12, 12, 12, 12)
 
@@ -172,14 +174,14 @@ Top.SliceCenter = Rect.new(12, 12, 12, 12)
 Tabs.Name = "Tabs"
 Tabs.Parent = Window
 Tabs.BackgroundColor3 = Color3.new(1, 1, 1)
-Tabs.BackgroundTransparency = 0.2
+Tabs.BackgroundTransparency = 1
 Tabs.Position = UDim2.new(0, 15, 0, 60)
 Tabs.Size = UDim2.new(1, -30, 1, -60)
 
 Title.Name = "Title"
 Title.Parent = Window
 Title.BackgroundColor3 = Color3.new(1, 1, 1)
-Title.BackgroundTransparency = 0.2
+Title.BackgroundTransparency = 1
 Title.Position = UDim2.new(0, 30, 0, 3)
 Title.Size = UDim2.new(0, 200, 0, 20)
 Title.Font = Enum.Font.Bangers
@@ -231,7 +233,7 @@ UIListLayout_2.Padding = UDim.new(0, 5)
 
 TextBox.Parent = Prefabs
 TextBox.BackgroundColor3 = Color3.new(1, 1, 1)
-TextBox.BackgroundTransparency = 0.2
+TextBox.BackgroundTransparency = 1
 TextBox.BorderSizePixel = 0
 TextBox.Size = UDim2.new(0, 275, 0, 20)
 TextBox.ZIndex = 2
@@ -980,7 +982,9 @@ function library:AddWindow(title, options)
 	Window.Parent = Windows
 	Window:FindFirstChild("Title").Text = title
 	Window.Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)
-	Window.ZIndex = Window.ZIndex + (windows * 10)
+	Window.ZIndex = Window.ZIndex + (windows * 10)  
+	Window.BackgroundTransparency = ui_options.window_transparency
+	Window.ImageTransparency = ui_options.window_transparency
 
 	do -- Altering Window Color
 		local Title = Window:FindFirstChild("Title")
